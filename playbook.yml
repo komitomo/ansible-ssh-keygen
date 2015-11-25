@@ -2,4 +2,4 @@
   sudo: true
   tasks:
     - name: add a new user
-      user: name=komiya.tomohiro state=present
+      user: name=testuser state=present
