@@ -4,5 +4,8 @@
     - name: add a new user
       user: name=testuser2 state=present
 
+    - name: mkdir .ssh
+      file: dest=/home/testuser2/.ssh/ state=directory owner=testuser2 group=testuser2 mode=700 
+
     - name: add authorized keys
-      file: dest=/home/testuser2/.ssh/authorized_keys state=directory
+      file: dest=/home/testuser2/.ssh/authorized_keys state=directory owner=testuser2 group=testuser2 mode=600
