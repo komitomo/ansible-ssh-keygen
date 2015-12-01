@@ -8,4 +8,4 @@
       file: dest=/home/testuser2/.ssh/ state=directory owner=testuser2 group=testuser2 mode=700 
 
     - name: add authorized keys
-      file: dest=/home/testuser2/.ssh/authorized_keys state=directory owner=testuser2 group=testuser2 mode=600
+      file: dest=/home/testuser2/.ssh/authorized_keys state=touch owner=testuser2 group=testuser2 mode=600
