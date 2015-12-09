@@ -1,14 +1,17 @@
 - hosts: all
   sudo: true
+
+  vars:
+    - username: username #put username 
   tasks:
     - name: add a new user
-      user: name=testuser2 state=present
+      user: name={{username}} state=present
 
     - name: mkdir .ssh
-      file: dest=/home/testuser2/.ssh/ state=directory owner=testuser2 group=testuser2 mode=700 
+      file: dest=/home/{{username}}/.ssh/ state=directory owner={{username}} group={{username}} mode=700 
 
     - name: add authorized keys
-      file: dest=/home/testuser2/.ssh/authorized_keys state=touch owner=testuser2 group=testuser2 mode=600
+      file: dest=/home/{{username}}/.ssh/authorized_keys state=touch owner={{username}} group={{username}} mode=600
 
     - name: copy publickey
-      copy: src=~/developments/ansible/ansible-ssh-keygen/foo.txt dest=/home/testuser2/.ssh/authorized_keys
+      copy: src=~/developments/ansible/ansible-ssh-keygen/foo.txt dest=/home/{{username}}/.ssh/authorized_keys
