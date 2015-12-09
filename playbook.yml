@@ -2,16 +2,17 @@
   sudo: true
 
   vars:
-    - username: username #put username 
+    - username: testuser4  #put username 
+    - homedir:  /home/hm_system_users/{{username}}
   tasks:
     - name: add a new user
-      user: name={{username}} state=present
+      user: name={{username}} state=present home={{homedir}}
 
     - name: mkdir .ssh
-      file: dest=/home/{{username}}/.ssh/ state=directory owner={{username}} group={{username}} mode=700 
+      file: dest={{homedir}}/.ssh/ state=directory owner={{username}} group={{username}} mode=700 
 
     - name: add authorized keys
-      file: dest=/home/{{username}}/.ssh/authorized_keys state=touch owner={{username}} group={{username}} mode=600
+      file: dest={{homedir}}/.ssh/authorized_keys state=touch owner={{username}} group={{username}} mode=600
 
     - name: copy publickey
-      copy: src=~/developments/ansible/ansible-ssh-keygen/foo.txt dest=/home/{{username}}/.ssh/authorized_keys
+      copy: src=~/developments/ansible/ansible-ssh-keygen/foo.txt dest={{homedir}}/.ssh/authorized_keys
