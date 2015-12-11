@@ -2,8 +2,8 @@
   sudo: true
 
   vars:
-    - username:  testuser4  #put username 
-    - homedir:   /home/hm_system_users/{{username}}
+    - username:  #put username
+    - homedir:   /home/{{username}}
   tasks:
     - name: add a new user
       user: name={{username}} state=present home={{homedir}}
