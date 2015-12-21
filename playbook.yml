@@ -2,7 +2,7 @@
   sudo: true
 
   vars:
-    - username:  #put username
+    - username:  komiya.tomohiro3 #put username
     - homedir:   /home/{{username}}
   tasks:
     - name: add a new user
@@ -14,5 +14,5 @@
     - name: add authorized keys
       file: dest={{homedir}}/.ssh/authorized_keys state=touch owner={{username}} group={{username}} mode=600
 
-    - name: copy publickey
-      template: src=public.j2 dest={{homedir}}/.ssh/authorized_keys
+    - name: add authoried_keys
+      authorized_key: user={{username}}  key="{{lookup('file', '~/.ssh/id_rsa.pub')}}"
